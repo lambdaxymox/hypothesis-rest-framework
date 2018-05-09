@@ -19,9 +19,6 @@ config = dict(
     packages = ['hypothesis_rest_framework'],
     scripts = [],
     name = 'hypothesis_rest_framework',
-    cmdclass = {
-
-    },
 )
 
 setup(**config)
