@@ -5,41 +5,22 @@ import os
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
-TAR_FILE = os.path.join('tarballs', 'sample.tar.gz')
-SAMPLE_ROOT = 'sample'
-
-
-class PyTest(TestCommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass to pytest")]
-
-    def initialize_options(self):
-        TestCommand.initialize_options(self)
-        self.pytest_args = ''
-
-    def run_tests(self):
-        import shlex
-        # Import here, because imports outside the eggs aren't loaded.
-        import pytest
-        errno = pytest.main(shlex.split(self.pytest_args))
-        sys.exit(errno)
-
 
 config = dict(
-    description = 'Extension to Django Rest Framework to incorporate Hypothesis property tests.',
+    description = 'Extension of Hypothesis testing framework to integrate property tests into Django Rest Framework.',
     author = 'Stallmanifold',
     url = 'https://github.com/stallmanifold/hypothesis-rest-framework',
     download_url = 'https://github.com/stallmanifold/hypothesis-rest-framework.git',
     author_email = 'stallmanifold@gmail.com',
     version = '0.1',
-    install_requires = ['hypothesis'],
+    install_requires = ['hypothesis', 'hypothesis[django]', 'djangorestframework'],
     license = "LICENSE-APACHE",
     package_dir = {'': 'src'},
-    packages = [''],
+    packages = ['hypothesis_rest_framework'],
     scripts = [],
-    name = 'bookworm',
-    tests_require = ['hypothesis'],
+    name = 'hypothesis_rest_framework',
     cmdclass = {
-        'test': PyTest,
+
     },
 )
 
